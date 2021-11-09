@@ -7,12 +7,12 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comments
         fields = ['video_ID','comment','comment_reply','likes','dislikes']
         like = serializers.SerializerMethodField('increase_likes')
-        dislike = serializers.SerializerMethodField('increase_dislikes')
+        dislikes = serializers.SerializerMethodField('increase_dislikes')
 
     def increase_likes(self, obj):
         obj.likes += 1
         obj.save()
 
     def increase_dislikes(self, obj):
-        obj.likes += 1
+        obj.dislikes += 1
         obj.save()

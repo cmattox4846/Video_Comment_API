@@ -1,19 +1,16 @@
-
-from django.db.models import fields
 from django.http.response import Http404
-from django.shortcuts import render
-from .models import Comments, Video
+from .models import Comments
 from .serializers import CommentSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import  status
 
 
-# Create your views here.
+
 class CommentList(APIView):
     def get(self,request):
-        Video = Comments.objects.all()
-        serializer = CommentSerializer(Video, many=True)
+        Comment = Comments.objects.all()
+        serializer = CommentSerializer(Comment, many=True)
         return Response(serializer.data)
 
     def post(self,request):
@@ -59,13 +56,13 @@ class CommentLike(APIView):
 
     def put(self,request,pk):
         Comment= self.get_object(pk)
-        serializer = CommentSerializer.increase_like(Comment, Comment)
+        serializer = CommentSerializer.increase_likes(Comment, Comment)
         
         
        
         return Response(serializer,status=status.HTTP_200_OK)
 
-class VideoDislike(APIView):
+class CommentDislike(APIView):
     def get_object(self,pk):
         try:
             return Comments.objects.get(pk=pk)
@@ -74,7 +71,7 @@ class VideoDislike(APIView):
 
     def put(self,request,pk):
         Comment = self.get_object(pk)
-        serializer = CommentSerializer.increase_dislike(Comment, Comment)
+        serializer = CommentSerializer.increase_dislikes(Comment, Comment)
         
         
        

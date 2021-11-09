@@ -7,8 +7,9 @@ name = "pypi"
 django = "*"
 mysql-connector-python = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.9"

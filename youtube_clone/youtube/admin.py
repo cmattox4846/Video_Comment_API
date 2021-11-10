@@ -8,5 +8,4 @@ class DefaultAdmin(admin.ModelAdmin):
 
 
 
-# admin.site.register(Comments)
-# admin.site.register(Reply)
+

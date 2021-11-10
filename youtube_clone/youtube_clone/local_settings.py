@@ -10,7 +10,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'youtube_clone',
         'USER': 'root',
-        'PASSWORD': 'Florida',
+        'PASSWORD': 'THEpasswordis82$$',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {

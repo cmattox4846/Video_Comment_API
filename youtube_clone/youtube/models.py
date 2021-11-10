@@ -1,8 +1,10 @@
 from django.db import models
 
 # Create your models here.
-class Comment(models.Model):
-    likes = models.IntegerField(default=0)
-    dislikes = models.IntegerField(default=0)
-    video_id = models.CharField(max_length=100)
-    comment = models.CharField(max_length=100)
+class Comments(models.Model):
+    video_ID = models.CharField(max_length=50)
+    comment = models.CharField(max_length=200, null=True,blank=True)
+    comment_reply= models.CharField(max_length=200,null=True,blank=True)
+    likes = models.IntegerField(null=True,blank=True)
+    dislikes = models.IntegerField(null=True,blank=True)
+

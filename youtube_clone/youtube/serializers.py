@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Comments
+from .models import Comments, Reply
 
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ['video_ID','comment','comment_reply','likes','dislikes']
+        fields = ['id', 'video_ID','comment','likes','dislikes']
         like = serializers.SerializerMethodField('increase_likes')
         dislikes = serializers.SerializerMethodField('increase_dislikes')
 
@@ -16,3 +16,9 @@ class CommentSerializer(serializers.ModelSerializer):
     def increase_dislikes(self, obj):
         obj.dislikes += 1
         obj.save()
+
+class ReplySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reply
+        fields = ['comment','comment_reply']
+        

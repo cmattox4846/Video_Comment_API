@@ -9,7 +9,7 @@ import time
 
 class CommentList(APIView):
     def get(self,request):
-        time.sleep(1)
+        time.sleep(0.5)
         Comment = Comments.objects.all()
         serializer = CommentSerializer(Comment, many=True)
         return Response(serializer.data)
@@ -22,7 +22,6 @@ class CommentList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CommentDetails(APIView):
-    time.sleep(1)
     def get_object(self,pk):
         try:
             return Comments.objects.get(pk=pk)
@@ -48,10 +47,9 @@ class CommentDetails(APIView):
         return Response(status=status.HTTP_200_OK)
 
 
-class ReplyList(APIView):
-    time.sleep(1.5)
+class ReplyList(APIView):   
     def get(self,request):
-        
+        time.sleep(0.5)
         Replys = Reply.objects.all()
         serializer = ReplySerializer(Replys, many=True)
         return Response(serializer.data)
@@ -100,14 +98,9 @@ class CommentLike(APIView):
 
     def put(self,request,pk):
         Comment= self.get_object(pk)
-        serializer = CommentSerializer.increase_likes(Comment, Comment)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+        serializer = CommentSerializer.increase_likes(Comment, Comment)       
        
-        # return Response(serializer,status=status.HTTP_200_OK)
+        return Response(serializer,status=status.HTTP_200_OK)
 
 class CommentDislike(APIView):
     def get_object(self,pk):
